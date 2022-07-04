@@ -27,17 +27,26 @@ export default {
         },
       ],
       novo_livro: "",
+      novo_ISBN: "",
+      novo_quantidade: "",
+      novo_preco: "",
     };
   },
   methods: {
     salvar() {
       if (this.novo_livro !== "") {
         const novo_id = uuid4();
-        this.livro.push({
+        this.livros.push({
           id: novo_id,
           nome: this.novo_livro,
+          ISBN: this.novo_ISBN,
+          quantidade: this.novo_quantidade,
+          preco: this.novo_preco,
         });
         this.novo_livro = "";
+        this.novo_ISBN = "";
+        this.novo_quantidade = "";
+        this.novo_preco = "";
       }
     },
     excluir(livro) {
@@ -54,7 +63,30 @@ export default {
       <h2>Gerenciamento de livros</h2>
     </div>
     <div class="form-input">
-      <input type="text" v-model="novo_livro" @keydown.enter="salvar" />
+      <input
+        type="text"
+        v-model="novo_livro"
+        @keydown.enter="salvar"
+        placeholder="Livro"
+      />
+      <input
+        type="text"
+        v-model="novo_ISBN"
+        @keydown.enter="salvar"
+        placeholder="ISBN"
+      />
+      <input
+        type="text"
+        v-model="novo_quantidade"
+        @keydown.enter="salvar"
+        placeholder="Quantidade"
+      />
+      <input
+        type="text"
+        v-model="novo_preco"
+        @keydown.enter="salvar"
+        placeholder="Preço"
+      />
       <button @click="salvar">Salvar</button>
     </div>
     <div class="list-livros">
@@ -91,6 +123,7 @@ export default {
 .title {
   text-align: center;
   margin: 0rem 0;
+  color: #ccc;
 }
 
 .form-input {
@@ -108,7 +141,7 @@ export default {
 
 .form-input button {
   padding: 0.5rem;
-  border: 1px double rgb(72, 255, 0);
+  border: 1px double rgb(0, 0, 0);
   border-radius: 10px;
   background-color: black;
   color: #ccc;
@@ -127,6 +160,7 @@ table {
   margin: 0 auto;
   border: 1px solid black;
   font-size: 1.1rem;
+  color: #ccc;
 }
 
 table thead {
@@ -139,6 +173,16 @@ table tbody tr {
 }
 
 table tbody tr:nth-child(odd) {
-  background-color: cadetblue;
+  background-color: rgb(0, 0, 0);
+}
+
+body {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(11, 9, 121, 0.8407738095238095) 40%,
+    rgba(0, 212, 255, 1) 100%
+  );
 }
 </style>

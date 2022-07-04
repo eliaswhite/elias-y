@@ -21,6 +21,7 @@ export default {
         },
       ],
       novo_editora: "",
+      novo_site: "",
     };
   },
   methods: {
@@ -30,8 +31,10 @@ export default {
         this.editoras.push({
           id: novo_id,
           nome: this.novo_editora,
+          site: this.novo_site,
         });
         this.novo_editora = "";
+        this.novo_site = "";
       }
     },
     excluir(editora) {
@@ -48,7 +51,18 @@ export default {
       <h2>Gerenciamento de editoras</h2>
     </div>
     <div class="form-input">
-      <input type="text" v-model="novo_editora" @keydown.enter="salvar" />
+      <input
+        type="text"
+        v-model="novo_editora"
+        @keydown.enter="salvar"
+        placeholder="Editora"
+      />
+      <input
+        type="text"
+        v-model="novo_site"
+        @keydown.enter="salvar"
+        placeholder="Site"
+      />
       <button @click="salvar">Salvar</button>
     </div>
     <div class="list-editoras">

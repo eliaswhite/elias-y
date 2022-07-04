@@ -1,6 +1,5 @@
 <script setup>
 import HeaderComp from "@/components/template/HeaderComp.vue";
-import RodapeComp from "@/components/template/RodapeComp.vue";
 </script>
 
 <template>
@@ -8,7 +7,6 @@ import RodapeComp from "@/components/template/RodapeComp.vue";
   <main>
     <RouterView />
   </main>
-  <RodapeComp />
 </template>
 
 <style>
@@ -28,7 +26,6 @@ a {
 
 footer {
   height: 10%;
-  background-color: rgb(70, 44, 143);
   color: white;
   font-size: 1.3rem;
   display: flex;
@@ -39,11 +36,4 @@ footer {
 header span {
   padding: 0 20px;
 }
-
-main {
-  height: 70%;
-  background-color: rgb(82, 191, 135);
-}
 </style>
-
-2); );
