@@ -1,4 +1,5 @@
 <script>
+import axios from "axios";
 import { v4 as uuid4 } from "uuid";
 export default {
   data() {
@@ -32,24 +33,23 @@ export default {
       novo_preco: "",
     };
   },
+  async created() {
+    const livros = await axios.get("http://localhost:4000/livros");
+    this.livros = livros.data;
+  },
   methods: {
-    salvar() {
-      if (this.novo_livro !== "") {
-        const novo_id = uuid4();
-        this.livros.push({
-          id: novo_id,
-          nome: this.novo_livro,
-          ISBN: this.novo_ISBN,
-          quantidade: this.novo_quantidade,
-          preco: this.novo_preco,
-        });
-        this.novo_livro = "";
-        this.novo_ISBN = "";
-        this.novo_quantidade = "";
-        this.novo_preco = "";
-      }
+    async salvar() {
+      const livro = {
+        nome: this.novo_livro,
+      };
+      const livro_criado = await axios.post(
+        "http://localhost:4000/livros",
+        livro
+      );
+      this.livros.push(livro_criado.data);
     },
-    excluir(livro) {
+    async excluir(livro) {
+      await axios.delete(`http://localhost:4000/livro/${livro.id}`);
       const indice = this.livros.indexOf(livro);
       this.livros.splice(indice, 1);
     },
